@@ -1,3 +1,8 @@
+<?php
+include 'includes/connect.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -125,17 +130,25 @@
                         <span class="sidebar-title fs-5 fw-semibold">Quick Access</span>
                     </a>
                     <ul class="list-unstyled ps-0">
-                        
+
                         <li class="mb-1">
                             <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
                                 Products
                             </button>
+
                             <div class="collapse show" id="dashboard-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="#" class="link-dark rounded">Overview</a></li>
-                                    <li><a href="#" class="link-dark rounded">Weekly</a></li>
-                                    <li><a href="#" class="link-dark rounded">Monthly</a></li>
-                                    <li><a href="#" class="link-dark rounded">Annually</a></li>
+
+                                    <?php
+                                        $select_category = "SELECT * FROM categories";
+                                        $result_category = mysqli_query($con, $select_category);
+                                        while($row_data = mysqli_fetch_array($result_category)){
+                                            $category_name = $row_data['category_name'];
+                                            $category_id = $row_data['category_id'];
+                                            echo "<li><a href=\"index.php?category=$category_id\" class=\"link-dark rounded\">$category_name</a></li>";
+                                        }
+                                    ?>
+                                    
                                 </ul>
                             </div>
                         </li>
@@ -144,12 +157,22 @@
                             <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
                                 Brands
                             </button>
+
                             <div class="collapse show" id="orders-collapse">
+
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="#" class="link-dark rounded">New</a></li>
-                                    <li><a href="#" class="link-dark rounded">Processed</a></li>
-                                    <li><a href="#" class="link-dark rounded">Shipped</a></li>
-                                    <li><a href="#" class="link-dark rounded">Returned</a></li>
+                                    <?php
+                                        $select_brands = "SELECT * FROM brands";
+                                        $result_brands = mysqli_query($con, $select_brands);
+                                        
+                                        // echo $row_data['brand_name'];
+                                        while($row_data = mysqli_fetch_assoc($result_brands)){
+                                            $brand_name = $row_data['brand_name'];
+                                            $brand_id = $row_data['brand_id'];
+                                            echo "<li><a href=\"index.php?brand=$brand_id\" class=\"link-dark rounded\">$brand_name</a></li>";
+                                        }
+                                    ?>
+                                    
                                 </ul>
                             </div>
                         </li>
