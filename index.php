@@ -52,12 +52,21 @@ include 'includes/connect.php';
                                     Products
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+
+                                    <?php
+                                    $select_category = "SELECT * FROM categories";
+                                    $result_category = mysqli_query($con, $select_category);
+                                    while ($row_data = mysqli_fetch_array($result_category)) {
+                                        $category_name = $row_data['category_name'];
+                                        $category_id = $row_data['category_id'];
+                                        echo "<li><a class='dropdown-item' href='#'>$category_name</a></li>";
+                                    }
+                                    ?>
+
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -65,12 +74,23 @@ include 'includes/connect.php';
                                     Brands
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+
+                                    <?php
+                                    $select_brands = "SELECT * FROM brands";
+                                    $result_brands = mysqli_query($con, $select_brands);
+
+                                    // echo $row_data['brand_name'];
+                                    while ($row_data = mysqli_fetch_assoc($result_brands)) {
+                                        $brand_name = $row_data['brand_name'];
+                                        $brand_id = $row_data['brand_id'];
+                                        echo "<li><a class='dropdown-item' href='#'>$brand_name</a></li>";
+                                    }
+                                    ?>
+                                    
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                   
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -140,15 +160,15 @@ include 'includes/connect.php';
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 
                                     <?php
-                                        $select_category = "SELECT * FROM categories";
-                                        $result_category = mysqli_query($con, $select_category);
-                                        while($row_data = mysqli_fetch_array($result_category)){
-                                            $category_name = $row_data['category_name'];
-                                            $category_id = $row_data['category_id'];
-                                            echo "<li><a href=\"index.php?category=$category_id\" class=\"link-dark rounded\">$category_name</a></li>";
-                                        }
+                                    $select_category = "SELECT * FROM categories";
+                                    $result_category = mysqli_query($con, $select_category);
+                                    while ($row_data = mysqli_fetch_array($result_category)) {
+                                        $category_name = $row_data['category_name'];
+                                        $category_id = $row_data['category_id'];
+                                        echo "<li><a href=\"index.php?category=$category_id\" class=\"link-dark rounded\">$category_name</a></li>";
+                                    }
                                     ?>
-                                    
+
                                 </ul>
                             </div>
                         </li>
@@ -162,17 +182,17 @@ include 'includes/connect.php';
 
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                     <?php
-                                        $select_brands = "SELECT * FROM brands";
-                                        $result_brands = mysqli_query($con, $select_brands);
-                                        
-                                        // echo $row_data['brand_name'];
-                                        while($row_data = mysqli_fetch_assoc($result_brands)){
-                                            $brand_name = $row_data['brand_name'];
-                                            $brand_id = $row_data['brand_id'];
-                                            echo "<li><a href=\"index.php?brand=$brand_id\" class=\"link-dark rounded\">$brand_name</a></li>";
-                                        }
+                                    $select_brands = "SELECT * FROM brands";
+                                    $result_brands = mysqli_query($con, $select_brands);
+
+                                    // echo $row_data['brand_name'];
+                                    while ($row_data = mysqli_fetch_assoc($result_brands)) {
+                                        $brand_name = $row_data['brand_name'];
+                                        $brand_id = $row_data['brand_id'];
+                                        echo "<li><a href=\"index.php?brand=$brand_id\" class=\"link-dark rounded\">$brand_name</a></li>";
+                                    }
                                     ?>
-                                    
+
                                 </ul>
                             </div>
                         </li>

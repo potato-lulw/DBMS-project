@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>PartsMarket - Dashboard</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -67,7 +67,7 @@
 
         <div class="button-catelog">
             
-                <button class="btn text-dark"><a href="#" class="nav-link my-1">Insert Products</a></button>
+                <button class="btn text-dark"><a href="insert_product.php" class="nav-link my-1">Insert Products</a></button>
                 <button class="btn text-dark"><a href="#" class="nav-link my-1">View Products</a></button>
                 <button class="btn text-dark"><a href="index.php?insert_category" class="nav-link my-1">Insert Category</a></button>
                 <button class="btn text-dark"><a href="#" class="nav-link my-1">View Category</a></button>

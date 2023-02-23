@@ -29,6 +29,8 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: center;
+   
+    padding: 15px;
 }
 
 .button-catelog button{
@@ -58,6 +60,20 @@ body{
     width: 500px;
     color: #fff!important;
     border-radius: 50px;
+    margin: auto;
+    outline: 0;
+}
+
+.container .form-select{
+    background-color: #2C5364;
+    
+    color: white!important;
+}
+.form-bg .form-control{
+    background-image: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+    width: 100%;
+    color: #fff!important;
+    border-radius: 10px;
     margin: auto;
     outline: 0;
 }
@@ -266,8 +282,30 @@ a:focus {
 
 
 
+.form-bg{
+    background-image: linear-gradient(to left, #2C5364, #203A43);
+    height: 100%;
+    width: 100%;
+    color: white!important;
+
+    font-family: 'Quicksand', sans-serif;
+}
 
 
+
+
+
+.button-catelog .nav-link{
+    border-bottom: none !important;
+    transition: 0.3 ease-in;
+}
+.button-catelog .btn:hover{
+    border-bottom: none !important;
+    /* transform: scale(1.05); */
+    border: 2px solid white!important;
+    
+
+}
 
 
 
