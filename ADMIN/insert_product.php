@@ -1,7 +1,7 @@
-<?php
-include '../includes/connect.php';
-?>
 
+<?php
+    include '../includes/connect.php';  
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,18 +27,18 @@ include '../includes/connect.php';
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="form-bg" enctype="multipart/form-data" style="overflow-y: hidden">
+<body class="form-bg"  style="overflow-y: hidden">
 
     <div class="container m-auto w-50">
         <h1 class="text-center mt-3">Insert Products</h1>
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="product_title" class="form-label">Product Title</label>
-                <input type="text" class="form-control" id="product_title" name="product_title" placeholder="Enter product title" autocomplete="off" required>
+                <label for="product_title" class="form-label">Product Name</label>
+                <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Enter product name" autocomplete="off" required>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Decsription</label>
-                <textarea type="text" class="form-control" id="description" name="description" placeholder="Enter product description" autocomplete="off" required rows="3"></textarea>
+                <textarea type="text" class="form-control" id="description" name="product_desc" placeholder="Enter product description" autocomplete="off" required rows="3"></textarea>
 
             </div>
 
@@ -48,8 +48,8 @@ include '../includes/connect.php';
             </div>
             <div class="mb-3">
 
-                <select class="form-select product_category" name="product_category">
-                    <option selected>Select a product</option>
+                <select class="form-select product_category" name="product_category" required>
+                    <option selected>Select a category</option>
 
                     <?php
                     $select_category = "SELECT * FROM categories";
@@ -67,7 +67,7 @@ include '../includes/connect.php';
             </div>
             <div class="mb-3">
 
-                <select class="form-select product_brand" name="product_brand">
+                <select class="form-select product_brand" name="product_brand" required>
                     <option selected>Select a brand</option>
 
                     <?php
@@ -91,8 +91,8 @@ include '../includes/connect.php';
             </div>
 
             <div class="mb-3">
-                <label for="prodcut_price" class="form-label">Product price</label>
-                <input type="number" class="form-control" id="prodcut_price" name="prodcut_price" placeholder="Enter product price" autocomplete="off" required>
+                <label for="product_price" class="form-label">Product price</label>
+                <input type="text" class="form-control" id="product_price" name="product_price" placeholder="Enter product price" autocomplete="off" required>
             </div>
             <div class="mb-3">
                 <button class="btn btn-outline-success w-100" type="submit" name="insert_product">Sumbit</button>
@@ -108,3 +108,43 @@ include '../includes/connect.php';
 </body>
 
 </html>
+
+
+<?php
+    
+
+    if(isset($_POST['insert_product'])){
+        $product_name = $_POST['product_name'];
+        $product_desc = $_POST['product_desc'];
+        $product_keywords = $_POST['product_keywords'];
+        $product_category = $_POST['product_category'];
+        $product_brand = $_POST['product_brand'];
+        $product_price = $_POST['product_price'];
+        $product_status = 'true';
+        
+        $product_image = $_FILES['product_image']['name'];
+        $temp_image = $_FILES['product_image']['tmp_name'];
+
+
+        // empty condition
+
+        if($product_name == '' or $product_desc == '' or $product_keywords == '' or $product_category == '' or $product_brand == '' or $product_image == '' or $product_price == ''){
+            echo "<script> alert('Please fill all the fields');</script>";
+            exit();
+        }
+        else{
+            move_uploaded_file($temp_image, "/product_images/$product_price");
+            
+
+            //insert
+            $insert_query = "Insert into products (product_name, product_desc, product_keywords,category_id, brand_id, product_image, product_price,date, status) values ('$product_name', '$product_desc', '$product_keywords', '$product_category', '$product_brand', '$product_image', '$product_price',NOW(),$product_status)";
+
+            $result_query = mysqli_query($con, $insert_query);
+            if($result_query){
+                echo "<script> alert('Product inserted successfully!');</script>";
+            }
+        }
+
+
+    }
+?>

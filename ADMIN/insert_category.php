@@ -25,9 +25,10 @@
             echo "<p style=\"text-align: center;margin-top: 50px;\">Enter a valid category name</p>";
         } else {
             $insert_query = "insert into categories (category_name) values ('$cate_title')";
+            
             $result = mysqli_query($con, $insert_query);
             if ($result) {
-                echo "<script>alert('Category has been inserted!')</script>";
+                // echo "<script>alert('Category has been inserted!')</script>";
             }
         }
     }

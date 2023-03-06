@@ -136,8 +136,8 @@ include 'includes/connect.php';
     <div class="body-start p-3" style="color: black">
 
         <div class="product-category">
-            <p class="product-route">Home/product-name</p>
-            <h1 class="product-title m-4">PRODUCT NAME</h1>
+            <p class="product-route">Home/category-name</p>
+            <h1 class="product-title m-4">CATEGORY NAME</h1>
             <p class="product-route">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati cumque tempora natus nobis autem illo ipsum laborum. Officia, vero voluptates.</p>
         </div>
 
@@ -153,7 +153,7 @@ include 'includes/connect.php';
 
                         <li class="mb-1">
                             <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-                                Products
+                                Product Categories
                             </button>
 
                             <div class="collapse show" id="dashboard-collapse">
