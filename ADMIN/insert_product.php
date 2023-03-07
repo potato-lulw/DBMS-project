@@ -133,7 +133,7 @@
             exit();
         }
         else{
-            move_uploaded_file($temp_image, "/product_images/$product_price");
+            move_uploaded_file($temp_image, "./product_images/$product_image");
             
 
             //insert
