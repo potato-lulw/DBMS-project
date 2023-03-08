@@ -1,5 +1,6 @@
 <?php
 include 'includes/connect.php';
+include 'functions/common_function.php';
 ?>
 
 
@@ -35,7 +36,7 @@ include 'includes/connect.php';
         <div class="menu-bar">
             <nav class="navbar navbar-expand-lg ">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#"><img src="Images/LogoNew.png" alt="Logo" width="100px"></a>
+                    <a class="navbar-brand" href="index.php"><img src="Images/LogoNew.png" alt="Logo" width="100px"></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fa-solid fa-bars"></i>
                     </button>
@@ -54,13 +55,7 @@ include 'includes/connect.php';
                                 <ul class="dropdown-menu">
 
                                     <?php
-                                    $select_category = "SELECT * FROM categories";
-                                    $result_category = mysqli_query($con, $select_category);
-                                    while ($row_data = mysqli_fetch_array($result_category)) {
-                                        $category_name = $row_data['category_name'];
-                                        $category_id = $row_data['category_id'];
-                                        echo "<li><a class='dropdown-item' href='#'>$category_name</a></li>";
-                                    }
+                                    getcategoriesdd();
                                     ?>
 
                                     <li>
@@ -76,15 +71,7 @@ include 'includes/connect.php';
                                 <ul class="dropdown-menu">
 
                                     <?php
-                                    $select_brands = "SELECT * FROM brands";
-                                    $result_brands = mysqli_query($con, $select_brands);
-
-                                    // echo $row_data['brand_name'];
-                                    while ($row_data = mysqli_fetch_assoc($result_brands)) {
-                                        $brand_name = $row_data['brand_name'];
-                                        $brand_id = $row_data['brand_id'];
-                                        echo "<li><a class='dropdown-item' href='#'>$brand_name</a></li>";
-                                    }
+                                    getbrandsdd();
                                     ?>
 
                                     <li>
@@ -160,13 +147,7 @@ include 'includes/connect.php';
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 
                                     <?php
-                                    $select_category = "SELECT * FROM categories";
-                                    $result_category = mysqli_query($con, $select_category);
-                                    while ($row_data = mysqli_fetch_array($result_category)) {
-                                        $category_name = $row_data['category_name'];
-                                        $category_id = $row_data['category_id'];
-                                        echo "<li><a href=\"index.php?category=$category_id\" class=\"link-dark rounded\">$category_name</a></li>";
-                                    }
+                                    getcategories();
                                     ?>
 
                                 </ul>
@@ -182,15 +163,7 @@ include 'includes/connect.php';
 
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                     <?php
-                                    $select_brands = "SELECT * FROM brands";
-                                    $result_brands = mysqli_query($con, $select_brands);
-
-                                    // echo $row_data['brand_name'];
-                                    while ($row_data = mysqli_fetch_assoc($result_brands)) {
-                                        $brand_name = $row_data['brand_name'];
-                                        $brand_id = $row_data['brand_id'];
-                                        echo "<li><a href=\"index.php?brand=$brand_id\" class=\"link-dark rounded\">$brand_name</a></li>";
-                                    }
+                                    getbrands()
                                     ?>
 
                                 </ul>
@@ -220,73 +193,11 @@ include 'includes/connect.php';
 
                 <div class="row">
 
-
                     <?php
-                    $select_query = "Select * from products order by rand()";
-                    $result_query = mysqli_query($con, $select_query);
-                    while ($row = mysqli_fetch_assoc($result_query)) {
-                        $product_id = $row["product_id"];
-                        $product_name = $row["product_name"];
-                        $product_price = $row["product_price"];
-                        $product_desc = $row["product_desc"];
-                        $product_image = $row["product_image"];
-                        $category_id = $row["category_id"];
-                        $brand_id = $row["brand_id"];
-
-                        echo "<div class='col-md-4 mb-2'>
-                        <div class='card'>
-                            <div class='imgback'>
-                                <img src='./ADMIN/product_images/$product_image' class='card-img-top' alt='...'>
-                            </div>
-                            <div class='card-body'>
-                                <h5 class='card-title'>$product_name</h5>
-                                <p class='card-text'>$product_desc</p>
-                                <div class='price-details d-flex'>
-                                    <i class='fa-solid fa-indian-rupee-sign'></i>
-                                    <p class='price'>$product_price</p>
-                                </div>
-                                <div class='order '>
-                                    <button class='decrease'>
-                                        <i class='fa-solid fa-circle-minus'></i>
-                                    </button>
-                                    <input type='...' class='order-size form-control' placeholder='1'>
-                                    <button class='increase'>
-                                        <i class='fa-solid fa-circle-plus'></i>
-                                    </button>
-                                    <a href='#' class='btn btn-primary'>Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>";
-                    }
-
-
+                    getproducts();
+                    get_item_by_category();
+                    get_item_by_brand();
                     ?>
-                    <!-- <div class="col-md-4 mb-2">
-                        <div class="card">
-                            <div class="imgback">
-                                <img src="Images/dummy.jpg" class="card-img-top" alt="...">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <div class="price-details d-flex">
-                                    <i class="fa-solid fa-indian-rupee-sign"></i>
-                                    <p class="price">1,000</p>
-                                </div>
-                                <div class="order ">
-                                    <button class="decrease">
-                                        <i class="fa-solid fa-circle-minus"></i>
-                                    </button>
-                                    <input type="..." class="order-size form-control" placeholder="1">
-                                    <button class="increase">
-                                        <i class="fa-solid fa-circle-plus"></i>
-                                    </button>
-                                    <a href="#" class="btn btn-primary">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
 
                 </div> <!--row end-->
             </div> <!--col end-->
